@@ -80,7 +80,6 @@ body {
   text-align: center;
   margin-bottom: 28px;
   font-style: italic;
-  white-space: nowrap;
 }
 
 .landing-hook {
@@ -1120,7 +1119,7 @@ body {
 
 @media (max-width: 768px) {
   .landing-page {
-    padding: 32px 16px 60px;
+    padding: 32px 8px 60px;
   }
 
   .mobile-break {
@@ -1128,22 +1127,28 @@ body {
   }
 
   .landing-headline {
-    font-size: 2.9rem;
+    font-size: 8.4vw;
     font-weight: 900;
-    line-height: 1.2;
+    line-height: 1;
     max-width: 100%;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
   }
 
   .landing-subheadline {
-    font-size: min(2.6vw, 1.15rem);
+    font-size: 3.5vw;
     white-space: nowrap;
     color: var(--text-primary);
+    margin: 0 auto 24px auto;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
   }
 
   .landing-hook {
-    font-size: 0.95rem;
-    margin-bottom: 28px;
+    font-size: 0.75rem;
+    max-width: 260px;
+    margin: 0 auto 28px auto;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
   }
 
   .cta-button {
@@ -1164,6 +1169,12 @@ body {
   }
 
   /* Value Props — stay horizontal, smaller text */
+  .value-props-headline {
+    font-size: 0.95rem;
+    padding: 0 5%;
+    margin: 0 auto 28px auto;
+  }
+
   .value-props-row {
     flex-direction: row;
     flex-wrap: nowrap;
@@ -1351,14 +1362,6 @@ body {
 }
 
 @media (max-width: 480px) {
-  .landing-headline {
-    font-size: 1.85rem;
-    font-weight: 900;
-  }
-
-  .landing-subheadline {
-    font-size: 1rem;
-  }
 
   .cta-button {
     padding: 14px 28px;
