@@ -690,14 +690,14 @@ body {
   background: rgba(40, 15, 30, 0.9);
   border: 2px solid rgba(200, 40, 40, 0.75);
   border-radius: 14px;
-  padding: 26px 40px;
+  padding: 14px 10px;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.85rem;
   font-weight: 900;
   color: white;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 1.45;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
   animation: warningPulse 2s ease-in-out infinite;
 }
 
@@ -1310,13 +1310,16 @@ body {
   }
 
   .warning-banner {
-    font-size: 0.84rem;
-    padding: 16px 10px;
-    letter-spacing: 0.01em;
+    font-size: min(2.8vw, 0.8rem);
+    padding: 16px 4px;
+    letter-spacing: -0.03em;
     margin-top: 16px;
     border-radius: 12px;
     width: 100%;
     line-height: 1.5;
+    white-space: nowrap;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
   }
 
   .status-pill {
