@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import AssessmentPage from './AssessmentPage'
 
 export default function LandingPage() {
   const navigate = useNavigate()
@@ -6,27 +7,23 @@ export default function LandingPage() {
   const goToQuiz = () => navigate('/assessment')
 
   return (
-    <div className="landing-page">
+    <div className="landing-page light-theme">
       <h1 className="landing-headline">
-        Feeling Frustrated That<br className="mobile-break" />{' '}
-        You Aren't Booking<br className="mobile-break" />{' '}
-        More Restoration Jobs?
+        Find Out Exactly What Is Costing Your Restoration Business Money.
       </h1>
 
       <p className="landing-subheadline">
-        Even though you are ready to handle more work?
+        See where your business is losing cash every month before you waste any more time.
       </p>
 
-      <p className="landing-hook">
-        Take the quick 2-minute assessment to find out exactly why you're experiencing this frustration and what to do about it.
-      </p>
+      <div className="embedded-quiz-container">
+        <AssessmentPage />
+      </div>
 
-      <div className="cta-wrapper">
-        <span className="cta-arrow left">→</span>
-        <button className="cta-button" onClick={goToQuiz} id="cta-start-quiz-top">
-          Start The Assessment
-        </button>
-        <span className="cta-arrow right">←</span>
+      <div className="embedded-benefits-row">
+        <div className="benefit-item">✓ Takes less than 2 minutes</div>
+        <div className="benefit-item">✓ 100% free</div>
+        <div className="benefit-item">✓ See your results instantly at the end</div>
       </div>
 
       <p className="value-props-headline">

@@ -2,14 +2,11 @@ import { useEffect } from 'react'
 
 export default function ThankYouRankAI() {
   useEffect(() => {
-    // META SCHEDULE EVENT — DISABLED FOR DEVELOPMENT
-    // Uncomment when deploying to production.
-    /*
+    // META SCHEDULE EVENT
     if (window.fbq) {
       window.fbq('track', 'Schedule')
     }
-    */
-    console.log('[DEV] Schedule event would fire here (disabled)')
+    console.log('[PROD] Schedule event fired')
   }, [])
 
   return (

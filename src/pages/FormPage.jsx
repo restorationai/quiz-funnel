@@ -81,19 +81,19 @@ export default function FormPage() {
     const score = calculateScore()
     const quizOutcome = route === 'rank-ai' ? 'Rank AI' : 'AI Receptionist'
 
-    // ============================================
-    // CRM WEBHOOK — DISABLED FOR DEVELOPMENT
-    // Uncomment when deploying to production.
-    // ============================================
-    /*
+    const nameParts = formData.fullName.trim().split(' ')
+    const firstName = nameParts[0] || ''
+    const lastName = nameParts.slice(1).join(' ') || ''
+
     try {
       await fetch('https://services.leadconnectorhq.com/hooks/Tx5eKisj3Xluq1SeZKe3/webhook-trigger/ff375b31-6d07-464f-9804-4507d5c046df', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          full_name: formData.fullName,
+          firstName: firstName,
+          lastName: lastName,
           email: formData.email,
-          company_name: formData.companyName,
+          companyName: formData.companyName,
           phone: formData.phone,
           quiz_outcome: quizOutcome,
           quiz_score: score,
@@ -104,12 +104,12 @@ export default function FormPage() {
     } catch (err) {
       console.error('Webhook error:', err)
     }
-    */
 
-    console.log('[DEV] Form submitted (webhook disabled):', {
-      full_name: formData.fullName,
+    console.log('[PROD] Form submitted (webhook fired):', {
+      firstName: firstName,
+      lastName: lastName,
       email: formData.email,
-      company_name: formData.companyName,
+      companyName: formData.companyName,
       phone: formData.phone,
       quiz_outcome: quizOutcome,
       quiz_score: score,

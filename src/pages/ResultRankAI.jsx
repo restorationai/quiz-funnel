@@ -7,6 +7,14 @@ export default function ResultRankAI() {
   const score = calculateScore()
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+    // The HighLevel form script aggressively auto-scrolls down when it finishes loading.
+    // We lock the scroll to the top for the first 1.5 seconds to fight and defeat it.
+    const scrollLock = setInterval(() => {
+      window.scrollTo(0, 0)
+    }, 50)
+    setTimeout(() => clearInterval(scrollLock), 1500)
+
     const script = document.createElement('script')
     script.src = 'https://link.restorationai.io/js/form_embed.js'
     script.type = 'text/javascript'
