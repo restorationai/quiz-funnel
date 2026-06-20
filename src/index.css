@@ -58,105 +58,6 @@ body {
   padding: 70px 24px 100px;
 }
 
-/* Update landing page background to white */
-.landing-page.light-theme {
-  background: #ffffff;
-  background-image: none;
-}
-
-.landing-page.light-theme .landing-headline {
-  color: #111827;
-}
-
-.landing-page.light-theme .landing-subheadline {
-  color: #374151;
-  font-weight: 500;
-  font-style: normal;
-}
-
-/* Embedded Quiz Container */
-.embedded-quiz-container {
-  width: 100%;
-  max-width: 840px;
-  margin: 0 auto 30px;
-  border: 1px solid rgba(0, 102, 255, 0.15); /* clean, subtle blue outline */
-  border-radius: 24px;
-  background: #ffffff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-}
-
-/* Reset embedded assessment page styles */
-.embedded-quiz-container .assessment-page {
-  min-height: auto;
-  background: transparent;
-  background-image: none;
-  padding: 40px;
-}
-
-/* Override question card inside embedded quiz so it looks light/clean */
-.embedded-quiz-container .question-card {
-  background: #ffffff;
-  border: none;
-  box-shadow: none;
-  padding: 0;
-  color: #111827;
-}
-
-.embedded-quiz-container .question-text {
-  color: #111827;
-}
-
-.embedded-quiz-container .answer-option {
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  color: #111827;
-}
-
-.embedded-quiz-container .answer-option:hover {
-  background: #f3f4f6;
-  border-color: #d1d5db;
-}
-
-.embedded-quiz-container .answer-option.selected {
-  background: #eff6ff;
-  border-color: #3b82f6;
-}
-
-.embedded-quiz-container .progress-labels {
-  color: #6b7280;
-}
-
-.embedded-quiz-container .back-button {
-  color: #6b7280;
-}
-
-.embedded-quiz-container .open-text-area {
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  color: #111827;
-}
-
-.embedded-quiz-container .open-text-area::placeholder {
-  color: #9ca3af;
-}
-
-/* Checkmarks under the quiz */
-.embedded-benefits-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-  margin-bottom: 60px;
-  flex-wrap: wrap;
-}
-
-.embedded-benefits-row .benefit-item {
-  color: #374151;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
 .landing-headline {
   font-size: 3.6rem;
   font-weight: 900;
@@ -789,14 +690,14 @@ body {
   background: rgba(40, 15, 30, 0.9);
   border: 2px solid rgba(200, 40, 40, 0.75);
   border-radius: 14px;
-  padding: 14px 10px;
+  padding: 26px 40px;
   text-align: center;
-  font-size: 1.85rem;
+  font-size: 1.4rem;
   font-weight: 900;
   color: white;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  line-height: 1.15;
+  letter-spacing: 0.04em;
+  line-height: 1.45;
   animation: warningPulse 2s ease-in-out infinite;
 }
 
@@ -1409,16 +1310,13 @@ body {
   }
 
   .warning-banner {
-    font-size: min(2.8vw, 0.8rem);
-    padding: 16px 4px;
-    letter-spacing: -0.03em;
+    font-size: 0.84rem;
+    padding: 16px 10px;
+    letter-spacing: 0.01em;
     margin-top: 16px;
     border-radius: 12px;
     width: 100%;
     line-height: 1.5;
-    white-space: nowrap;
-    -webkit-text-size-adjust: none;
-    text-size-adjust: none;
   }
 
   .status-pill {
