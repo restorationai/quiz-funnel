@@ -8,7 +8,7 @@ import ResultAIReceptionist from './pages/ResultAIReceptionist'
 import ThankYouRankAI from './pages/ThankYouRankAI'
 import ThankYouAIReceptionist from './pages/ThankYouAIReceptionist'
 import LoadingScreen from './components/LoadingScreen'
-import DevNav from './components/DevNav'
+
 
 function PageTracker() {
   const location = useLocation()
@@ -38,7 +38,6 @@ function App() {
         <Route path="/thank-you/rank-ai" element={<ThankYouRankAI />} />
         <Route path="/thank-you/ai-receptionist" element={<ThankYouAIReceptionist />} />
       </Routes>
-      <DevNav />
     </>
   )
 }
