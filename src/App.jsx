@@ -13,12 +13,25 @@ import LoadingScreen from './components/LoadingScreen'
 
 function PageTracker() {
   const location = useLocation()
+  
   useEffect(() => {
-    // META PAGEVIEW
+    // 1. Read the variant cookie so we can attach it to all tracking events
+    const isVariantB = document.cookie.includes('ab-test-variant=B');
+    const currentVariant = isVariantB ? 'B' : 'A';
+    // 2. Fire META PAGEVIEW with the variant attached
     if (window.fbq) {
-      window.fbq('track', 'PageView')
+      window.fbq('track', 'PageView', { ab_test_variant: currentVariant })
+    }
+    
+    // 3. Fire GOOGLE ANALYTICS PAGEVIEW with the new path and the variant attached
+    if (window.gtag) {
+      window.gtag('event', 'page_view', {
+        page_path: location.pathname + location.search,
+        ab_test_variant: currentVariant
+      })
     }
   }, [location])
+  
   return null
 }
 

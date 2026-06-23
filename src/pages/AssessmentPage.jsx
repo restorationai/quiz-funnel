@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useQuiz } from '../context/QuizContext'
 
@@ -147,6 +147,24 @@ export default function AssessmentPage({ isEmbedded = false }) {
   const progress = Math.round(((currentQuestion) / totalQuestions) * 100)
 
   const isMultipleChoice = currentQuestion < 14
+
+  useEffect(() => {
+    if (window.gtag) {
+      const isVariantB = document.cookie.includes('ab-test-variant=B');
+      const currentVariant = isVariantB ? 'B' : 'A';
+      const questionText = currentQuestion < 14 
+        ? questions[currentQuestion].text 
+        : "Is there anything else you want to tell us?";
+
+      window.gtag('event', 'question_view', {
+        event_category: 'Quiz Funnel',
+        event_label: `Question ${currentQuestion + 1}`,
+        question_number: currentQuestion + 1,
+        question_text: questionText,
+        ab_test_variant: currentVariant
+      });
+    }
+  }, [currentQuestion]);
 
   const handleAnswerClick = (letter) => {
     setAnswer(questions[currentQuestion].id, letter)
