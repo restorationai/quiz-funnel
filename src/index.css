@@ -155,6 +155,25 @@ body {
   transform: translateY(0) scale(0.98);
 }
 
+/* Embedded Quiz Styles (For Landing Page B) */
+.embedded-quiz-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto 0;
+  padding: 0 20px;
+}
+
+.assessment-page.embedded {
+  min-height: auto; /* Remove fullscreen height */
+  padding: 20px 0; /* Remove top spacing */
+  background: transparent;
+}
+
+.assessment-page.embedded .question-card {
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
 /* Value Propositions */
 .value-props-headline {
   font-size: 1.25rem;
@@ -316,7 +335,7 @@ body {
 
 .progress-bar-fill {
   height: 100%;
-  background: var(--gradient-cta);
+  background: var(--cyan);
   border-radius: 3px;
   transition: width 0.4s ease;
 }
@@ -1410,3 +1429,95 @@ body {
     font-size: 1.2rem;
   }
 }
+
+/* ==========================================
+   SPLIT TEST B STYLES
+   ========================================== */
+
+.split-test-b .landing-headline {
+  margin-bottom: 8px !important;
+}
+
+/* Bouncing diagonal arrows around subheadline */
+.split-test-b .landing-subheadline-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.split-test-b .landing-subheadline {
+  margin-bottom: 0 !important;
+}
+
+.split-test-b .bounce-arrow {
+  color: var(--cyan) !important;
+  font-size: 2.2rem;
+  font-weight: 800;
+}
+
+.split-test-b .bounce-arrow.left-diag {
+  animation: splitBounceDiagLeftToRight 1.2s ease-in-out infinite;
+}
+
+.split-test-b .bounce-arrow.right-diag {
+  animation: splitBounceDiagRightToLeft 1.2s ease-in-out infinite;
+}
+
+@keyframes splitBounceDiagLeftToRight {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(12px, 12px); }
+}
+
+@keyframes splitBounceDiagRightToLeft {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-12px, 12px); }
+}
+
+/* Keep tight internal spacing */
+.split-test-b .embedded-quiz-container {
+  margin-top: 0 !important;
+}
+
+.split-test-b .assessment-page.embedded {
+  padding-top: 0 !important;
+}
+
+.back-button.inside-card {
+  margin-bottom: 12px !important;
+  font-size: 0.95rem;
+}
+
+/* Mobile fixes for arrows going off-screen */
+@media (max-width: 768px) {
+  .back-button.inside-card {
+    margin-top: -12px !important;
+    margin-bottom: 4px !important;
+  }
+  .split-test-b .landing-subheadline-wrapper {
+    gap: 8px;
+    margin-bottom: 8px !important;
+  }
+  .split-test-b .landing-subheadline {
+    white-space: normal !important;
+    font-size: 4vw !important;
+    padding: 0 4px;
+  }
+  .split-test-b .bounce-arrow {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* Assessment Footer for Back Button */
+.assessment-footer {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 12px;
+  width: 100%;
+}
+.back-button.outside-card {
+  margin-bottom: 0 !important;
+  font-size: 0.95rem;
+}
+

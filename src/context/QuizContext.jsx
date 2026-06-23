@@ -12,7 +12,7 @@ export function QuizProvider({ children }) {
 
   const calculateScore = () => {
     const problematicAnswers = {
-      1: ['A', 'B'],
+      1: [],
       2: ['B', 'C'],
       3: ['A', 'B'],
       4: ['A', 'B'],

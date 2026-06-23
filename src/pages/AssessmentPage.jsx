@@ -5,16 +5,16 @@ import { useQuiz } from '../context/QuizContext'
 const questions = [
   {
     id: 1,
-    text: "Where do you get most of your water damage jobs right now?",
+    text: "What is your main role in your restoration business?",
     options: [
-      { letter: 'A', text: "Word of mouth, mostly friends and referrals." },
-      { letter: 'B', text: "I buy them from places like Angi." },
-      { letter: 'C', text: "People find my website on Google." },
+      { letter: 'A', text: "I am an Owner / Founder." },
+      { letter: 'B', text: "I'm an Estimator / Project Manager." },
+      { letter: 'C', text: "I run the Office / Dispatch." },
     ]
   },
   {
     id: 2,
-    text: "When someone searches 'water damage near me,' do you show up at the very top of Google?",
+    text: "When someone searches \"water damage near me\", do you show up at the very top of Google?",
     options: [
       { letter: 'A', text: "Yes, we dominate the top spot." },
       { letter: 'B', text: "Sometimes, but it's hit or miss." },
@@ -132,20 +132,24 @@ const questions = [
   },
 ]
 
-export default function AssessmentPage() {
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const { answers, setAnswer, question15Text, setQuestion15Text } = useQuiz()
+export default function AssessmentPage({ isEmbedded = false }) {
   const navigate = useNavigate()
+  const {
+    answers,
+    setAnswer,
+    question15Text,
+    setQuestion15Text,
+    calculateScore
+  } = useQuiz()
 
-  const totalQuestions = 15
-  const isLastTextQuestion = currentQuestion === 14 // Q15 is index 14
+  const [currentQuestion, setCurrentQuestion] = useState(0)
+  const totalQuestions = questions.length
+  const progress = Math.round(((currentQuestion) / totalQuestions) * 100)
+
   const isMultipleChoice = currentQuestion < 14
 
-  const progress = Math.round(((currentQuestion + 1) / totalQuestions) * 100)
-
   const handleAnswerClick = (letter) => {
-    const qId = questions[currentQuestion].id
-    setAnswer(qId, letter)
+    setAnswer(questions[currentQuestion].id, letter)
 
     // Auto-advance after brief delay
     setTimeout(() => {
@@ -164,23 +168,17 @@ export default function AssessmentPage() {
 
   const handleBack = () => {
     if (currentQuestion === 0) {
-      navigate('/')
+      if (!isEmbedded) {
+        navigate('/')
+      }
     } else {
       setCurrentQuestion(prev => prev - 1)
     }
   }
 
   return (
-    <div className="assessment-page">
-      <button className="back-button" onClick={handleBack} id="quiz-back-button">
-        ← Back
-      </button>
-
+    <div className={`assessment-page ${isEmbedded ? 'embedded' : ''}`}>
       <div className="progress-section">
-        <div className="progress-labels">
-          <span>Question {currentQuestion + 1} of {totalQuestions}</span>
-          <span>{progress}% Completed</span>
-        </div>
         <div className="progress-bar-track">
           <div className="progress-bar-fill" style={{ width: `${progress}%` }} />
         </div>
@@ -217,6 +215,17 @@ export default function AssessmentPage() {
             </button>
           </>
         )}
+      </div>
+
+      <div className="assessment-footer">
+        <button 
+          className="back-button outside-card" 
+          onClick={handleBack} 
+          id="quiz-back-button"
+          style={{ visibility: (isEmbedded && currentQuestion === 0) ? 'hidden' : 'visible' }}
+        >
+          ← Back
+        </button>
       </div>
     </div>
   )

@@ -1,0 +1,7 @@
+name = "quiz-ab-test-worker"
+main = "ab-test-worker.js"
+compatibility_date = "2024-04-05"
+
+[[routes]]
+pattern = "audit.restorationai.io/*"
+zone_name = "restorationai.io"

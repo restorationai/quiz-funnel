@@ -85,6 +85,9 @@ export default function FormPage() {
     const firstName = nameParts[0] || ''
     const lastName = nameParts.slice(1).join(' ') || ''
 
+    const isVariantB = document.cookie.includes('ab-test-variant=B');
+    const splitTestVariant = isVariantB ? 'Version B (White)' : 'Version A (Dark)';
+
     try {
       await fetch('https://services.leadconnectorhq.com/hooks/Tx5eKisj3Xluq1SeZKe3/webhook-trigger/ff375b31-6d07-464f-9804-4507d5c046df', {
         method: 'POST',
@@ -100,6 +103,7 @@ export default function FormPage() {
           score: score,
           quiz_question_15: question15Text,
           quiz_answers: answers,
+          ab_test_variant: splitTestVariant,
         }),
       })
     } catch (err) {

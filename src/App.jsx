@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import LandingPage from './pages/LandingPage'
+import LandingPageB from './pages/LandingPageB'
 import AssessmentPage from './pages/AssessmentPage'
 import FormPage from './pages/FormPage'
 import ResultRankAI from './pages/ResultRankAI'
@@ -13,15 +14,42 @@ import LoadingScreen from './components/LoadingScreen'
 function PageTracker() {
   const location = useLocation()
   useEffect(() => {
-    // META PAGEVIEW — DISABLED FOR DEVELOPMENT
-    // Uncomment when deploying to production.
-    /*
+    // META PAGEVIEW
     if (window.fbq) {
       window.fbq('track', 'PageView')
     }
-    */
   }, [location])
   return null
+}
+
+function SplitTestRouter() {
+  const [variant, setVariant] = useState('A'); // Default to A
+
+  useEffect(() => {
+    // Read the ab-test-variant cookie set by Cloudflare Edge
+    const isVariantB = document.cookie.includes('ab-test-variant=B');
+    const currentVariant = isVariantB ? 'B' : 'A';
+    setVariant(currentVariant);
+
+    // Fire Meta custom event to track which variant they saw
+    if (window.fbq) {
+      window.fbq('trackCustom', 'SplitTestView', { variant: currentVariant });
+    }
+
+    // Send Custom Tag to Microsoft Clarity
+    if (window.clarity) {
+      window.clarity("set", "ab_test_variant", currentVariant);
+    }
+
+    // Send Custom Event to Google Analytics
+    if (window.gtag) {
+      window.gtag('event', 'split_test_view', {
+        'ab_test_variant': currentVariant
+      });
+    }
+  }, []);
+
+  return variant === 'B' ? <LandingPageB /> : <LandingPage />;
 }
 
 function App() {
@@ -29,7 +57,8 @@ function App() {
     <>
       <PageTracker />
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<SplitTestRouter />} />
+        <Route path="/version-b" element={<LandingPageB />} />
         <Route path="/assessment" element={<AssessmentPage />} />
         <Route path="/loading" element={<LoadingScreen />} />
         <Route path="/form" element={<FormPage />} />
